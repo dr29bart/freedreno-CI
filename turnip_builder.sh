@@ -6,6 +6,7 @@ deps="meson ninja patchelf unzip curl pip flex bison zip"
 workdir="$(pwd)/turnip_workdir"
 driverdir="$workdir/turnip_module"
 ndkver="android-ndk-r25c"
+mesatag="mesa-23.1.0-rc2"
 clear
 
 
@@ -47,7 +48,7 @@ unzip "$ndkver"-linux.zip  &> /dev/null
 
 
 echo "Downloading mesa source (~30 MB) ..." $'\n'
-curl https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.zip --output mesa-main.zip &> /dev/null
+curl https://github.com/Mesa3D/mesa/archive/refs/tags/"$mesatag".zip --output mesa-main.zip &> /dev/null
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
 unzip mesa-main.zip &> /dev/null
@@ -110,12 +111,12 @@ cd $driverdir
 cat <<EOF >"meta.json"
 {
   "schemaVersion": 1,
-  "name": "Mesa Turnip Adreno Driver 23.2.0",
+  "name": "Mesa Turnip Adreno Driver $mesatag",
   "description": "Open-source Vulkan driver build from mesa drivers repo",
-  "author": "Mr_Purple_666",
+  "author": "Local test",
   "packageVersion": "T-Alpha",
   "vendor": "Mesa",
-  "driverVersion": "23.2.0-devel",
+  "driverVersion": "$mesatag",
   "minApi": 30,
   "libraryName": "vulkan.adreno.so"
 }
@@ -131,8 +132,8 @@ cp $workdir/libbacktrace.so $driverdir
 
 
 echo "Packing files in to magisk module ..." $'\n'
-zip -r $workdir/turnip-23.2.0-T-Alpha_MrPurple.adpkg.zip * &> /dev/null
-if ! [ -a $workdir/turnip-23.2.0-T-Alpha_MrPurple.adpkg.zip ];
+zip -r $workdir/$mesatag.adpkg.zip * &> /dev/null
+if ! [ -a $workdir/$mesatag.adpkg.zip ];
 	then echo -e "$red-Packing failed!$nocolor" && exit 1
-	else echo -e "$green-All done, you can take your module from here;$nocolor" && echo $workdir/turnip-23.0.0-T-Alpha_MrPurple.adpkg.zip
+	else echo -e "$green-All done, you can take your module from here;$nocolor" && echo $workdir/$mesatag.adpkg.zip
 fi
