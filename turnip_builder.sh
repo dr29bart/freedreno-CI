@@ -47,13 +47,13 @@ unzip "$ndkver"-linux.zip  &> /dev/null
 
 
 
-echo "Downloading mesa source (~30 MB) ..." $'\n'
+echo "Downloading mesa source [$mesatag] (~30 MB) ..." $'\n'
 curl -L https://github.com/Mesa3D/mesa/archive/refs/tags/"$mesatag".zip --output mesa.zip
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
 unzip mesa.zip  &> /dev/null
 cd mesa-$mesatag
-
+ls -la
 
 
 echo "Creating meson cross file ..." $'\n'
@@ -77,7 +77,7 @@ EOF
 
 
 echo "Generating build files ..." $'\n'
-meson build-android-aarch64 --cross-file $workdir/mesa-$mesatag/android-aarch64 -Dbuildtype=release -Dplatforms=android -Dplatform-sdk-version=31 -Dandroid-stub=true -Dgallium-drivers= -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Db_lto=true &> $workdir/meson_log
+meson build-android-aarch64 --cross-file $workdir/mesa-$mesatag/android-aarch64 -Dbuildtype=release -Dplatforms=android -Dplatform-sdk-version=31 -Dandroid-stub=true -Dgallium-drivers= -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Db_lto=true
 
 
 
