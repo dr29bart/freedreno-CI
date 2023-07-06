@@ -6,7 +6,7 @@ deps="meson ninja patchelf unzip curl pip flex bison zip"
 workdir="$(pwd)/turnip_workdir"
 driverdir="$workdir/turnip_module"
 ndkver="android-ndk-r25c"
-mesatag="mesa-23.1.0-rc2"
+mesatag="$1"
 clear
 
 
