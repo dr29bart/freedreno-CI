@@ -52,7 +52,7 @@ curl -L https://github.com/Mesa3D/mesa/archive/refs/tags/"$mesatag".zip --output
 ls -la
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
-unzip mesa.zip
+unzip mesa.zip  &> /dev/null
 cd mesa-$mesatag
 
 
