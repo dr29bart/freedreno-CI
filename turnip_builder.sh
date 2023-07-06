@@ -51,9 +51,8 @@ echo "Downloading mesa source [$mesatag] (~30 MB) ..." $'\n'
 curl -L https://github.com/Mesa3D/mesa/archive/refs/tags/"$mesatag".zip --output mesa.zip
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
-unzip mesa.zip
+unzip mesa.zip &> /dev/null
 cd mesa-$mesatag
-ls -la
 
 
 echo "Creating meson cross file ..." $'\n'
@@ -82,7 +81,7 @@ meson build-android-aarch64 --cross-file $workdir/mesa-$mesatag/android-aarch64 
 
 
 echo "Compiling build files ..." $'\n'
-ninja -C build-android-aarch64 &> $workdir/ninja_log
+ninja -C build-android-aarch64 #&> $workdir/ninja_log
 
 
 
