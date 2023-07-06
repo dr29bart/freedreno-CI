@@ -48,7 +48,9 @@ unzip "$ndkver"-linux.zip  &> /dev/null
 
 
 echo "Downloading mesa source [$mesatag] (~30 MB) ..." $'\n'
-curl -L https://github.com/Mesa3D/mesa/archive/refs/tags/"$mesatag".zip --output mesa.zip
+# curl -L https://github.com/Mesa3D/mesa/archive/refs/tags/"$mesatag".zip --output mesa.zip
+
+curl -L https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.zip --output mesa.zip
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
 unzip mesa.zip &> /dev/null
