@@ -51,7 +51,7 @@ echo "Downloading mesa source [$mesatag] (~30 MB) ..." $'\n'
 curl -L https://github.com/Mesa3D/mesa/archive/refs/tags/"$mesatag".zip --output mesa.zip
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
-unzip mesa.zip  &> /dev/null
+unzip mesa.zip
 cd mesa-$mesatag
 ls -la
 
