@@ -83,7 +83,7 @@ meson build-android-aarch64 --cross-file $workdir/mesa-$mesatag/android-aarch64 
 
 
 echo "Compiling build files ..." $'\n'
-ninja -C build-android-aarch64 #&> $workdir/ninja_log
+ninja -C build-android-aarch64 &> $workdir/ninja_log
 
 
 
